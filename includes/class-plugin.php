@@ -82,7 +82,7 @@ final class Plugin {
 	}
 
 	/**
-	 * Builds a PlentySpins URL for a game, or the PlentySpins home page.
+	 * Builds a Plentyspins URL for a game, or the Plentyspins home page.
 	 *
 	 * @param string $provider Provider slug.
 	 * @param string $game     Game slug.

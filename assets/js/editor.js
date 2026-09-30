@@ -115,7 +115,7 @@
 	}
 
 	/**
-	 * Links to the Exactplay Spin product page and the PlentySpins demo site.
+	 * Links to the Exactplay Spin product page and the Plentyspins demo site.
 	 *
 	 * @return {Element} Element.
 	 */
@@ -124,7 +124,7 @@
 			'p',
 			{ className: 'exactplay-spin-powered' },
 			createInterpolateElement(
-				__( 'Game catalog by <spin>Exactplay Spin</spin> · See it live on <demo>PlentySpins</demo>', 'exactplay-spin' ),
+				__( 'Game catalog by <spin>Exactplay Spin</spin> · See it live on <demo>Plentyspins</demo>', 'exactplay-spin' ),
 				{
 					spin: el( ExternalLink, { href: config.productUrl } ),
 					demo: el( ExternalLink, { href: config.demoUrl } ),

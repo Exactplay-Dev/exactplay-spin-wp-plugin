@@ -351,7 +351,7 @@ class Renderer {
 	/**
 	 * Optional "Powered by" line. Off by default; site owners opt in under Settings.
 	 *
-	 * @param array|null $game Game to link to on PlentySpins, or null for the home page.
+	 * @param array|null $game Game to link to on Plentyspins, or null for the home page.
 	 * @return string
 	 */
 	private function credit( $game = null ) {
@@ -369,9 +369,9 @@ class Renderer {
 				'<a href="' . esc_url( Plugin::PRODUCT_URL ) . '">Exactplay Spin</a>'
 			),
 			sprintf(
-				/* translators: %s: "PlentySpins" link. */
+				/* translators: %s: "Plentyspins" link. */
 				esc_html__( 'Swipe more demos on %s', 'exactplay-spin' ),
-				'<a href="' . esc_url( $demo_url ) . '">PlentySpins</a>'
+				'<a href="' . esc_url( $demo_url ) . '">Plentyspins</a>'
 			)
 		);
 	}

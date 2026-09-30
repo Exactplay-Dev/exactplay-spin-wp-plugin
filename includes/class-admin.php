@@ -151,7 +151,7 @@ class Admin {
 				__( 'Credit link', 'exactplay-spin' ),
 				'seo',
 				'checkbox',
-				__( 'Show a small "Powered by Exactplay Spin" line with a link to PlentySpins below games', 'exactplay-spin' ),
+				__( 'Show a small "Powered by Exactplay Spin" line with a link to Plentyspins below games', 'exactplay-spin' ),
 				__( 'Off by default. Nothing links out from your pages unless you turn this on.', 'exactplay-spin' ),
 			),
 			array( 'cache_hours', __( 'Cache catalog data for', 'exactplay-spin' ), 'performance', 'hours', null, __( 'Game lists and artwork URLs are stored on your site so pages load fast. Random picks refresh every 15 minutes.', 'exactplay-spin' ) ),
@@ -337,7 +337,7 @@ class Admin {
 				</div>
 				<div class="exactplay-spin-hero__links">
 					<a class="button button-primary" href="<?php echo esc_url( Plugin::PRODUCT_URL ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'About the Exactplay Spin API', 'exactplay-spin' ); ?></a>
-					<a class="button" href="<?php echo esc_url( Plugin::DEMO_URL ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'See it live on PlentySpins', 'exactplay-spin' ); ?></a>
+					<a class="button" href="<?php echo esc_url( Plugin::DEMO_URL ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'See it live on Plentyspins', 'exactplay-spin' ); ?></a>
 				</div>
 			</div>
 
@@ -422,7 +422,7 @@ class Admin {
 				<div class="exactplay-spin-card__actions">
 					<button type="button" class="button button-small" data-exactplay-spin-copy="<?php echo esc_attr( $shortcode ); ?>"><?php esc_html_e( 'Copy shortcode', 'exactplay-spin' ); ?></button>
 					<a class="button button-small" href="<?php echo esc_url( $this->api->launch_url( $game['provider'], $game['slug'], array( 'lang' => $this->settings->resolve_lang() ) ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Play', 'exactplay-spin' ); ?></a>
-					<a class="exactplay-spin-card__demo" href="<?php echo esc_url( Plugin::demo_url( $game['provider'], $game['slug'] ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'View on PlentySpins', 'exactplay-spin' ); ?></a>
+					<a class="exactplay-spin-card__demo" href="<?php echo esc_url( Plugin::demo_url( $game['provider'], $game['slug'] ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'View on Plentyspins', 'exactplay-spin' ); ?></a>
 				</div>
 			</div>
 		</li>
@@ -485,8 +485,8 @@ class Admin {
 			</div>
 			<div class="exactplay-spin-box">
 				<h2><?php esc_html_e( 'See it in action', 'exactplay-spin' ); ?></h2>
-				<p><?php esc_html_e( 'PlentySpins is a swipeable slot demo site built entirely on Exactplay Spin.', 'exactplay-spin' ); ?></p>
-				<p><a class="button" href="<?php echo esc_url( Plugin::DEMO_URL ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Visit PlentySpins', 'exactplay-spin' ); ?></a></p>
+				<p><?php esc_html_e( 'Plentyspins is a swipeable slot demo site built entirely on Exactplay Spin.', 'exactplay-spin' ); ?></p>
+				<p><a class="button" href="<?php echo esc_url( Plugin::DEMO_URL ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Visit Plentyspins', 'exactplay-spin' ); ?></a></p>
 			</div>
 		</aside>
 		<?php
@@ -520,7 +520,7 @@ class Admin {
 			return $links;
 		}
 		$links[] = '<a href="' . esc_url( Plugin::PRODUCT_URL ) . '" target="_blank" rel="noopener">' . esc_html__( 'Exactplay Spin API', 'exactplay-spin' ) . '</a>';
-		$links[] = '<a href="' . esc_url( Plugin::DEMO_URL ) . '" target="_blank" rel="noopener">' . esc_html__( 'Live demo: PlentySpins', 'exactplay-spin' ) . '</a>';
+		$links[] = '<a href="' . esc_url( Plugin::DEMO_URL ) . '" target="_blank" rel="noopener">' . esc_html__( 'Live demo: Plentyspins', 'exactplay-spin' ) . '</a>';
 		return $links;
 	}
 

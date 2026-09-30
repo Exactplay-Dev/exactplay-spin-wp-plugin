@@ -16,7 +16,7 @@ Embed free-play demo slots from 25+ studios in posts and pages with a block or s
 
 The games come from the [Exactplay Spin API](https://exactplay.com/spin), which aggregates demo games from Pragmatic Play, NetEnt, Play'n GO, Hacksaw Gaming, Nolimit City, Relax Gaming, Red Tiger, Quickspin, ELK Studios, Yggdrasil, Games Global, Playtech and more, with new studios added regularly.
 
-Want to see what the API can do? [PlentySpins](https://plentyspins.com) is a swipeable slot demo site built entirely on Exactplay Spin.
+Want to see what the API can do? [Plentyspins](https://plentyspins.com) is a swipeable slot demo site built entirely on Exactplay Spin.
 
 = Features =
 
@@ -86,11 +86,11 @@ No. The Exactplay Spin catalog and demo launcher are public. Learn more about th
 
 = Which studios and games are available? =
 
-The catalog currently has more than 4,000 demo games from 25+ studios, and new games appear automatically. Browse them under **Exactplay Spin → Game Library**, or on [PlentySpins](https://plentyspins.com).
+The catalog currently has more than 4,000 demo games from 25+ studios, and new games appear automatically. Browse them under **Exactplay Spin → Game Library**, or on [Plentyspins](https://plentyspins.com).
 
 = Can I see a site that uses Exactplay Spin? =
 
-Yes: [PlentySpins](https://plentyspins.com) is built entirely on the Exactplay Spin API.
+Yes: [Plentyspins](https://plentyspins.com) is built entirely on the Exactplay Spin API.
 
 = Does it work on mobile? =
 
@@ -122,7 +122,7 @@ This plugin relies on the **Exactplay Spin API**, a third-party service operated
 
 Exactplay [Terms of Service](https://exactplay.com/terms-of-service) and [Privacy Policy](https://exactplay.com/privacy-policy).
 
-Links to [PlentySpins](https://plentyspins.com) appear in the admin screens and, only if you enable the credit line, on your site. No data is sent to PlentySpins unless someone clicks one of those links.
+Links to [Plentyspins](https://plentyspins.com) appear in the admin screens and, only if you enable the credit line, on your site. No data is sent to Plentyspins unless someone clicks one of those links.
 
 == Screenshots ==
 
