@@ -145,7 +145,7 @@ Links to [Plentyspins](https://plentyspins.com) appear in the admin screens and,
 == Changelog ==
 
 = 1.0.0 =
-* First release: Demo Game and Demo Game Grid blocks, shortcodes, Game Library, settings and caching.
+* First release: Demo Game and Demo Game Grid blocks, shortcodes, Game Library, settings, catalog caching and local WebP artwork.
 
 == Upgrade Notice ==
 
