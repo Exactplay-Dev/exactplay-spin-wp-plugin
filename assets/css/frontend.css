@@ -1,0 +1,380 @@
+/* Exactplay Spin – front-end styles for embedded games and grids. */
+
+.exactplay-spin-game,
+.exactplay-spin-grid {
+	--exactplay-spin-radius: 8px;
+	--exactplay-spin-stage: #0b0b12;
+	box-sizing: border-box;
+}
+
+.exactplay-spin-game *,
+.exactplay-spin-grid * {
+	box-sizing: border-box;
+}
+
+/* Single game ------------------------------------------------------------ */
+
+.exactplay-spin-game {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.exactplay-spin-game__stage {
+	position: relative;
+	width: 100%;
+	aspect-ratio: var(--exactplay-spin-ratio, 16/9);
+	overflow: hidden;
+	border-radius: var(--exactplay-spin-radius);
+	background: var(--exactplay-spin-stage);
+}
+
+.exactplay-spin-game__stage:fullscreen {
+	aspect-ratio: auto;
+	border-radius: 0;
+}
+
+.exactplay-spin-game__frame {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+.exactplay-spin-game__poster {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	background: var(--exactplay-spin-stage);
+	color: #fff;
+	font: inherit;
+	cursor: pointer;
+}
+
+.exactplay-spin-game__image {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	object-fit: cover;
+	transition: transform 0.4s ease;
+}
+
+.exactplay-spin-game__poster::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1) 60%);
+}
+
+.exactplay-spin-game__play {
+	position: relative;
+	z-index: 1;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5em;
+	max-width: calc(100% - 2rem);
+	padding: 0.75em 1.4em 0.75em 1.1em;
+	border-radius: 999px;
+	background: #fff;
+	color: #111;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.2;
+	box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+	transition: transform 0.2s ease;
+}
+
+.exactplay-spin-game__play span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.exactplay-spin-game__poster:hover .exactplay-spin-game__play,
+.exactplay-spin-game__poster:focus-visible .exactplay-spin-game__play {
+	transform: scale(1.05);
+}
+
+.exactplay-spin-game__poster:hover .exactplay-spin-game__image {
+	transform: scale(1.03);
+}
+
+.exactplay-spin-game__poster:focus-visible {
+	outline: 3px solid #fff;
+	outline-offset: -6px;
+}
+
+.exactplay-spin-icon {
+	flex: none;
+	display: block;
+}
+
+.exactplay-spin-game__caption {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1em;
+	margin-top: 0.6em;
+	font-size: 0.9em;
+	line-height: 1.4;
+}
+
+.exactplay-spin-game__provider {
+	opacity: 0.7;
+}
+
+.exactplay-spin-game__fullscreen {
+	display: inline-flex;
+	flex: none;
+	align-items: center;
+	gap: 0.35em;
+	color: inherit;
+	text-decoration: none;
+}
+
+.exactplay-spin-game__fullscreen:hover span,
+.exactplay-spin-game__fullscreen:focus-visible span {
+	text-decoration: underline;
+}
+
+/* Grid ------------------------------------------------------------------- */
+
+.exactplay-spin-grid {
+	--exactplay-spin-gap: 1rem;
+	--exactplay-spin-min: 140px;
+	--exactplay-spin-media: 750 / 848;
+}
+
+.exactplay-spin-grid--square {
+	--exactplay-spin-media: 1 / 1;
+}
+
+.exactplay-spin-grid--landscape {
+	--exactplay-spin-min: 220px;
+	--exactplay-spin-media: 660 / 370;
+}
+
+/* At most --exactplay-spin-columns per row, fewer when tiles would get too narrow. */
+.exactplay-spin-grid__list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(max(var(--exactplay-spin-min), calc((100% - (var(--exactplay-spin-columns, 4) - 1) * var(--exactplay-spin-gap)) / var(--exactplay-spin-columns, 4))), 1fr));
+	gap: var(--exactplay-spin-gap);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.exactplay-spin-tile {
+	margin: 0;
+	padding: 0;
+}
+
+.exactplay-spin-tile::before {
+	content: none;
+}
+
+.exactplay-spin-tile__link {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3em;
+	color: inherit;
+	text-decoration: none;
+	border-radius: var(--exactplay-spin-radius);
+}
+
+.exactplay-spin-tile__link:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 3px;
+}
+
+.exactplay-spin-tile__media {
+	position: relative;
+	display: block;
+	aspect-ratio: var(--exactplay-spin-media);
+	overflow: hidden;
+	border-radius: var(--exactplay-spin-radius);
+	background: var(--exactplay-spin-stage);
+}
+
+.exactplay-spin-tile__media img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	object-fit: cover;
+	transition: transform 0.3s ease;
+}
+
+.exactplay-spin-tile__play {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, 0.35);
+	opacity: 0;
+	transition: opacity 0.2s ease;
+}
+
+.exactplay-spin-tile__play .exactplay-spin-icon {
+	width: 48px;
+	height: 48px;
+	padding: 12px 10px 12px 14px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.95);
+	color: #111;
+}
+
+.exactplay-spin-tile__link:hover .exactplay-spin-tile__play,
+.exactplay-spin-tile__link:focus-visible .exactplay-spin-tile__play {
+	opacity: 1;
+}
+
+.exactplay-spin-tile__link:hover .exactplay-spin-tile__media img,
+.exactplay-spin-tile__link:focus-visible .exactplay-spin-tile__media img {
+	transform: scale(1.05);
+}
+
+.exactplay-spin-tile__name {
+	font-size: 0.875em;
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.exactplay-spin-tile__provider {
+	margin-top: -0.2em;
+	font-size: 0.75em;
+	opacity: 0.7;
+}
+
+/* Credit and notices ----------------------------------------------------- */
+
+.exactplay-spin-credit {
+	margin: 0.6em 0 0;
+	font-size: 0.8em;
+	opacity: 0.75;
+}
+
+.exactplay-spin-notice {
+	padding: 0.75em 1em;
+	border-left: 4px solid #d63638;
+	background: rgba(214, 54, 56, 0.08);
+	font-size: 0.9em;
+}
+
+/* Pop-up player ---------------------------------------------------------- */
+
+html:has(.exactplay-spin-modal[open]) {
+	overflow: hidden;
+}
+
+.exactplay-spin-modal {
+	width: min(1200px, 94vw);
+	max-width: none;
+	max-height: none;
+	padding: 0;
+	border: 0;
+	border-radius: 12px;
+	background: #0b0b12;
+	color: #fff;
+	overflow: hidden;
+}
+
+.exactplay-spin-modal::backdrop {
+	background: rgba(0, 0, 0, 0.8);
+}
+
+.exactplay-spin-modal__bar {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 0.5rem 0.5rem 0.5rem 1rem;
+}
+
+.exactplay-spin-modal__title {
+	flex: 1;
+	min-width: 0;
+	margin: 0;
+	overflow: hidden;
+	color: #fff;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.3;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.exactplay-spin-modal__newtab {
+	color: #fff;
+	font-size: 0.85rem;
+	white-space: nowrap;
+}
+
+.exactplay-spin-modal__close {
+	display: flex;
+	flex: none;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.12);
+	color: #fff;
+	font-size: 26px;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.exactplay-spin-modal__close:hover,
+.exactplay-spin-modal__close:focus-visible {
+	background: rgba(255, 255, 255, 0.25);
+}
+
+.exactplay-spin-modal__stage {
+	position: relative;
+	height: min(calc(min(1200px, 94vw) * 0.5625), calc(100vh - 7rem));
+}
+
+@media (max-width: 781px) {
+	.exactplay-spin-modal {
+		width: 100vw;
+		height: 100vh;
+		height: 100dvh;
+		margin: 0;
+		border-radius: 0;
+	}
+
+	.exactplay-spin-modal__inner {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+
+	.exactplay-spin-modal__stage {
+		flex: 1;
+		height: auto;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.exactplay-spin-game__image,
+	.exactplay-spin-game__play,
+	.exactplay-spin-tile__media img,
+	.exactplay-spin-tile__play {
+		transition: none;
+	}
+}

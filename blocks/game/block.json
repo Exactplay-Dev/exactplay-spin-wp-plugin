@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "exactplay-spin/game",
+	"version": "1.0.0",
+	"title": "Demo Game",
+	"category": "embed",
+	"description": "Embed a free-play demo slot from the Exactplay Spin catalog.",
+	"keywords": [ "slot", "casino", "demo", "game", "exactplay", "spin", "iframe" ],
+	"textdomain": "exactplay-spin",
+	"attributes": {
+		"provider": { "type": "string", "default": "" },
+		"game": { "type": "string", "default": "" },
+		"gameName": { "type": "string", "default": "" },
+		"display": { "type": "string", "default": "" },
+		"aspectRatio": { "type": "string", "default": "" },
+		"channel": { "type": "string", "default": "" },
+		"lang": { "type": "string", "default": "" },
+		"currency": { "type": "string", "default": "" },
+		"showCaption": { "type": "boolean", "default": true }
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": { "margin": true }
+	},
+	"example": {
+		"attributes": { "provider": "netent", "game": "twin-spin", "gameName": "Twin Spin" }
+	},
+	"editorScript": "exactplay-spin-editor",
+	"editorStyle": "exactplay-spin-editor",
+	"style": "exactplay-spin"
+}

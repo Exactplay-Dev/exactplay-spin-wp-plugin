@@ -1,0 +1,204 @@
+/* Exactplay Spin – admin screens. */
+
+.exactplay-spin-hero {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px 32px;
+	margin: 16px 0 20px;
+	padding: 20px 24px;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	background: #fff;
+}
+
+.exactplay-spin-hero p {
+	max-width: 720px;
+	margin: 0 0 8px;
+}
+
+.exactplay-spin-hero p:last-child {
+	margin-bottom: 0;
+}
+
+.exactplay-spin-hero__lead {
+	font-size: 15px;
+}
+
+.exactplay-spin-hero__links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.exactplay-spin-filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-bottom: 12px;
+}
+
+.exactplay-spin-filters input[type="search"] {
+	min-width: 260px;
+}
+
+.exactplay-spin-count {
+	color: #646970;
+}
+
+.exactplay-spin-library {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 16px;
+	margin: 0 0 20px;
+}
+
+.exactplay-spin-card {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	overflow: hidden;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	background: #fff;
+}
+
+.exactplay-spin-card__media {
+	aspect-ratio: 660 / 370;
+	background: #1d2327;
+}
+
+.exactplay-spin-card__media img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.exactplay-spin-card__body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 6px;
+	padding: 12px;
+}
+
+.exactplay-spin-card__title {
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	line-height: 1.3;
+}
+
+.exactplay-spin-card__provider {
+	margin: 0;
+	color: #646970;
+}
+
+.exactplay-spin-card__code {
+	display: block;
+	margin-top: auto;
+	padding: 6px 8px;
+	font-size: 12px;
+	word-break: break-all;
+	user-select: all;
+}
+
+.exactplay-spin-card__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+}
+
+.exactplay-spin-card__demo {
+	margin-left: auto;
+	font-size: 12px;
+}
+
+.exactplay-spin-pagination ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin: 0 0 24px;
+}
+
+.exactplay-spin-pagination li {
+	margin: 0;
+}
+
+.exactplay-spin-pagination .page-numbers {
+	display: inline-block;
+	min-width: 30px;
+	padding: 4px 8px;
+	border: 1px solid #c3c4c7;
+	border-radius: 3px;
+	background: #fff;
+	text-align: center;
+	text-decoration: none;
+}
+
+.exactplay-spin-pagination .page-numbers.current {
+	border-color: #2271b1;
+	background: #2271b1;
+	color: #fff;
+}
+
+.exactplay-spin-pagination .page-numbers.dots {
+	border-color: transparent;
+	background: none;
+}
+
+.exactplay-spin-help {
+	max-width: 1100px;
+	margin-top: 24px;
+}
+
+.exactplay-spin-help summary {
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.exactplay-spin-help table {
+	margin: 12px 0;
+}
+
+.exactplay-spin-help code {
+	font-size: 12px;
+}
+
+.exactplay-spin-admin__layout {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: 24px;
+}
+
+.exactplay-spin-admin__main {
+	flex: 1 1 560px;
+	min-width: 0;
+}
+
+.exactplay-spin-admin__sidebar {
+	flex: 0 1 300px;
+	margin-top: 16px;
+}
+
+.exactplay-spin-box {
+	margin-bottom: 16px;
+	padding: 16px;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	background: #fff;
+}
+
+.exactplay-spin-box h2 {
+	margin-top: 0;
+	font-size: 14px;
+}
+
+.exactplay-spin-box p:last-child {
+	margin-bottom: 0;
+}

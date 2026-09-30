@@ -1,0 +1,46 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "exactplay-spin/games",
+	"version": "1.0.0",
+	"title": "Demo Game Grid",
+	"category": "embed",
+	"description": "Show a grid of free-play demo slots: random picks, a studio's games, or your own selection.",
+	"keywords": [ "slot", "casino", "demo", "games", "lobby", "grid", "exactplay", "spin" ],
+	"textdomain": "exactplay-spin",
+	"attributes": {
+		"source": { "type": "string", "default": "random", "enum": [ "random", "catalog", "selected" ] },
+		"provider": { "type": "string", "default": "" },
+		"games": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "object",
+				"properties": {
+					"provider": { "type": "string" },
+					"slug": { "type": "string" },
+					"name": { "type": "string" }
+				}
+			}
+		},
+		"count": { "type": "integer", "default": 12 },
+		"columns": { "type": "integer", "default": 4 },
+		"imageShape": { "type": "string", "default": "portrait", "enum": [ "portrait", "square", "landscape" ] },
+		"clickAction": { "type": "string", "default": "" },
+		"showProvider": { "type": "boolean", "default": true },
+		"channel": { "type": "string", "default": "" },
+		"lang": { "type": "string", "default": "" },
+		"currency": { "type": "string", "default": "" }
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": { "margin": true }
+	},
+	"example": {
+		"attributes": { "source": "random", "count": 4, "columns": 4 }
+	},
+	"editorScript": "exactplay-spin-editor",
+	"editorStyle": "exactplay-spin-editor",
+	"style": "exactplay-spin"
+}

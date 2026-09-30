@@ -1,0 +1,39 @@
+# Local test site: docker compose up -d, then open http://localhost:8089
+# First run: docker compose run --rm cli wp core install --url=http://localhost:8089 --title=Spin --admin_user=admin --admin_password=admin --admin_email=admin@example.com --skip-email
+#            docker compose run --rm cli wp plugin activate exactplay-spin
+services:
+  db:
+    image: mariadb:11
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: wp
+      MARIADB_USER: wp
+      MARIADB_PASSWORD: wp
+  wordpress:
+    image: wordpress:latest
+    depends_on: [db]
+    ports: ["8089:80"]
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: wp
+      WORDPRESS_DB_NAME: wp
+      WORDPRESS_DEBUG: "1"
+    volumes:
+      - wp:/var/www/html
+      - ./:/var/www/html/wp-content/plugins/exactplay-spin:ro
+  cli:
+    image: wordpress:cli
+    profiles: ["cli"]
+    user: "33:33"
+    depends_on: [wordpress]
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: wp
+      WORDPRESS_DB_NAME: wp
+    volumes:
+      - wp:/var/www/html
+      - ./:/var/www/html/wp-content/plugins/exactplay-spin:ro
+volumes:
+  wp:

@@ -1,0 +1,10 @@
+# Files that stay out of the release zip and the WordPress.org SVN trunk.
+.distignore
+.gitignore
+.git
+.wordpress-org
+.DS_Store
+bin
+dist
+compose.yml
+README.md
