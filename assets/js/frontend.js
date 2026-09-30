@@ -49,7 +49,7 @@
 			'<div class="exactplay-spin-modal__inner">' +
 			'<div class="exactplay-spin-modal__bar">' +
 			'<h2 class="exactplay-spin-modal__title"></h2>' +
-			'<a class="exactplay-spin-modal__newtab" target="_blank" rel="noopener"></a>' +
+			'<a class="exactplay-spin-modal__newtab" target="_blank" rel="nofollow noopener"></a>' +
 			'<button type="button" class="exactplay-spin-modal__close"><span aria-hidden="true">&times;</span></button>' +
 			'</div>' +
 			'<div class="exactplay-spin-modal__stage"></div>' +

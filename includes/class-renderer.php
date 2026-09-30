@@ -29,6 +29,13 @@ class Renderer {
 	private $api;
 
 	/**
+	 * Local copies of game artwork.
+	 *
+	 * @var Image_Cache
+	 */
+	private $images;
+
+	/**
 	 * Games that already printed structured data on this page.
 	 *
 	 * @var array
@@ -49,12 +56,14 @@ class Renderer {
 	/**
 	 * Constructor.
 	 *
-	 * @param Settings   $settings Settings store.
-	 * @param Api_Client $api      API client.
+	 * @param Settings    $settings Settings store.
+	 * @param Api_Client  $api      API client.
+	 * @param Image_Cache $images   Local copies of game artwork.
 	 */
-	public function __construct( Settings $settings, Api_Client $api ) {
+	public function __construct( Settings $settings, Api_Client $api, Image_Cache $images ) {
 		$this->settings = $settings;
 		$this->api      = $api;
+		$this->images   = $images;
 	}
 
 	/**
@@ -109,7 +118,7 @@ class Renderer {
 		$atts   = array_merge( self::game_defaults(), $atts );
 		$parsed = Api_Client::parse_key( $atts['provider'] . '/' . $atts['game'] );
 		if ( ! $parsed ) {
-			return $this->notice( __( 'Choose a game to embed.', 'exactplay-spin' ) );
+			return $this->notice( __( 'No game selected. Pick one in the block, or use game="studio/game" in the shortcode. You can copy shortcodes from Exactplay Spin → Game Library.', 'exactplay-spin' ) );
 		}
 		list( $provider, $slug ) = $parsed;
 
@@ -118,7 +127,7 @@ class Renderer {
 			$status = $game->get_error_data();
 			if ( is_array( $status ) && isset( $status['status'] ) && 404 === $status['status'] ) {
 				/* translators: %s: game identifier such as "netent/twin-spin". */
-				return $this->notice( sprintf( __( 'The game "%s" is no longer available.', 'exactplay-spin' ), $provider . '/' . $slug ) );
+				return $this->notice( sprintf( __( 'The game "%s" is no longer available. Replace it with another game from Exactplay Spin → Game Library.', 'exactplay-spin' ), $provider . '/' . $slug ) );
 			}
 			// The launcher URL doesn't depend on the details call, so the game still works without artwork.
 			$game = array(
@@ -158,7 +167,7 @@ class Renderer {
 				esc_attr( $frame_title )
 			);
 			if ( $poster ) {
-				$html .= sprintf( '<img class="exactplay-spin-game__image" src="%s" alt="" loading="lazy" decoding="async" />', esc_url( $poster ) );
+				$html .= sprintf( '<img class="exactplay-spin-game__image" src="%s" alt="" loading="lazy" decoding="async" />', esc_url( $this->images->url( $poster, 1280 ) ) );
 			}
 			$html .= '<span class="exactplay-spin-game__play">' . self::play_icon() . '<span>';
 			/* translators: %s: game name. */
@@ -176,7 +185,7 @@ class Renderer {
 			}
 			$html .= '</span>';
 			$html .= sprintf(
-				'<a class="exactplay-spin-game__fullscreen" href="%1$s" target="_blank" rel="noopener">%2$s<span>%3$s</span></a>',
+				'<a class="exactplay-spin-game__fullscreen" href="%1$s" target="_blank" rel="nofollow noopener">%2$s<span>%3$s</span></a>',
 				esc_url( $src ),
 				self::fullscreen_icon(),
 				esc_html__( 'Fullscreen', 'exactplay-spin' )
@@ -218,7 +227,7 @@ class Renderer {
 					$keys
 				);
 				if ( ! array_filter( $keys ) ) {
-					return $this->notice( __( 'Add games to this grid.', 'exactplay-spin' ) );
+					return $this->notice( __( 'This grid has no games yet. Pick games in the block, or list them in the shortcode, e.g. games="netent/twin-spin, hacksaw/wanted-dead-or-a-wild".', 'exactplay-spin' ) );
 				}
 				$games = $this->api->get_games_by_keys( array_slice( $keys, 0, Api_Client::MAX_PAGE_SIZE ) );
 				break;
@@ -239,10 +248,10 @@ class Renderer {
 
 		if ( is_wp_error( $games ) ) {
 			/* translators: %s: error message. */
-			return $this->notice( sprintf( __( 'Games could not be loaded: %s', 'exactplay-spin' ), $games->get_error_message() ) );
+			return $this->notice( sprintf( __( 'Games could not be loaded: %s. Try again in a few minutes. If it keeps happening, check that your server can connect to gameserver.exactplay.com.', 'exactplay-spin' ), rtrim( $games->get_error_message(), '.' ) ) );
 		}
 		if ( ! $games ) {
-			return $this->notice( __( 'No games found.', 'exactplay-spin' ) );
+			return $this->notice( __( 'No games found. Check the studio and game names; you can copy them from Exactplay Spin → Game Library.', 'exactplay-spin' ) );
 		}
 
 		$this->enqueue_assets();
@@ -263,7 +272,7 @@ class Renderer {
 
 			$html .= '<li class="exactplay-spin-tile">';
 			$html .= sprintf(
-				'<a class="exactplay-spin-tile__link" href="%1$s" target="_blank" rel="noopener"%2$s>',
+				'<a class="exactplay-spin-tile__link" href="%1$s" target="_blank" rel="nofollow noopener"%2$s>',
 				esc_url( $src ),
 				'modal' === $click ? ' data-exactplay-spin-modal="' . esc_url( $src ) . '" data-exactplay-spin-title="' . esc_attr( $frame_title ) . '"' : ''
 			);
@@ -271,7 +280,7 @@ class Renderer {
 			if ( $image ) {
 				$html .= sprintf(
 					'<img src="%1$s" alt="" width="%2$d" height="%3$d" loading="lazy" decoding="async" />',
-					esc_url( $image ),
+					esc_url( $this->images->url( $image, $width ) ),
 					$width,
 					$height
 				);

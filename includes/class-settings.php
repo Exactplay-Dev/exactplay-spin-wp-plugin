@@ -38,6 +38,7 @@ class Settings {
 			'grid_click'      => 'modal',
 			'structured_data' => true,
 			'credit'          => false,
+			'local_images'    => true,
 			'cache_hours'     => 12,
 		);
 	}
@@ -110,6 +111,7 @@ class Settings {
 
 		$clean['structured_data'] = ! empty( $input['structured_data'] );
 		$clean['credit']          = ! empty( $input['credit'] );
+		$clean['local_images']    = ! empty( $input['local_images'] );
 
 		$hours                = isset( $input['cache_hours'] ) ? absint( $input['cache_hours'] ) : $defaults['cache_hours'];
 		$clean['cache_hours'] = min( 168, max( 1, $hours ) );

@@ -11,6 +11,7 @@ Embeds demo slots from the [Exactplay Spin API](https://exactplay.com/spin) in W
 | `exactplay-spin.php` | Plugin header and bootstrap |
 | `includes/class-api-client.php` | Calls `gameserver.exactplay.com`, normalizes responses, caches them in transients, fetches in parallel |
 | `includes/class-renderer.php` | Front-end markup shared by blocks and shortcodes |
+| `includes/class-image-cache.php` | Stores artwork shown to visitors as WebP in `uploads/exactplay-spin` (created on first request via a signed URL, then linked directly) |
 | `includes/class-blocks.php` + `blocks/*/block.json` | "Demo Game" and "Demo Game Grid" blocks (server-rendered) |
 | `includes/class-shortcodes.php` | `[exactplay_game]` and `[exactplay_games]` |
 | `includes/class-rest-controller.php` | `exactplay-spin/v1/providers` and `/games` for the block editor (the API has no CORS headers, so the editor goes through the site) |

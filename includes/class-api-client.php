@@ -350,13 +350,7 @@ class Api_Client {
 				}
 
 				try {
-					$responses = \WpOrg\Requests\Requests::request_multiple(
-						$batch,
-						array(
-							'timeout'   => self::TIMEOUT,
-							'useragent' => $this->user_agent(),
-						)
-					);
+					$responses = \WpOrg\Requests\Requests::request_multiple( $batch, $this->parallel_options() );
 				} catch ( \Exception $e ) {
 					$responses = array_fill_keys( array_keys( $batch ), $e );
 				}
@@ -388,6 +382,37 @@ class Api_Client {
 				: $this->decode( (int) wp_remote_retrieve_response_code( $response ), wp_remote_retrieve_body( $response ) );
 		}
 		return $results;
+	}
+
+	/**
+	 * Options for parallel requests. WordPress's HTTP API has no parallel call, so
+	 * these apply the same certificate bundle and proxy settings WP_Http uses.
+	 *
+	 * @return array
+	 */
+	private function parallel_options() {
+		$options = array(
+			'timeout'   => self::TIMEOUT,
+			'useragent' => $this->user_agent(),
+			'verify'    => ABSPATH . WPINC . '/certificates/ca-bundle.crt',
+		);
+
+		$proxy = new \WP_HTTP_Proxy();
+		if ( $proxy->is_enabled() && $proxy->send_through_proxy( self::BASE_URL ) ) {
+			$requests_proxy = new \WpOrg\Requests\Proxy\Http( $proxy->host() . ':' . $proxy->port() );
+			if ( $proxy->use_authentication() ) {
+				$requests_proxy->use_authentication = true;
+				$requests_proxy->user               = $proxy->username();
+				$requests_proxy->pass               = $proxy->password();
+			}
+			$options['proxy'] = $requests_proxy;
+
+			// Requests only applies the proxy to single cURL requests, so apply it to each parallel handle too.
+			$options['hooks'] = new \WpOrg\Requests\Hooks();
+			$options['hooks']->register( 'curl.before_multi_add', array( $requests_proxy, 'curl_before_send' ) );
+		}
+
+		return $options;
 	}
 
 	/**

@@ -25,6 +25,7 @@ Want to see what the API can do? [Plentyspins](https://plentyspins.com) is a swi
 * **Shortcodes** for the classic editor, widgets and page builders such as Elementor, Divi and WPBakery.
 * **Game Library** admin screen to browse the whole catalog, preview games and copy shortcodes.
 * **Click to play** by default, so pages stay fast and nothing loads from the game studio until a visitor presses play.
+* **Fast, private artwork**: game images are stored on your site as WebP, usually over 90% smaller than the originals, so visitors' browsers don't contact Exactplay until they press play.
 * **Fullscreen button**, responsive layouts and portrait, square or landscape artwork for every game.
 * **Language and currency** for each game, defaulting to your site's language.
 * **Schema.org VideoGame markup** for embedded games (optional).
@@ -70,7 +71,11 @@ Prefer shortcodes? Go to **Exactplay Spin → Game Library**, find a game and cl
 
 = Demo play only =
 
-All games run in demo mode with play money. The plugin does not offer real-money gambling. Check that game content suits your audience and follow the advertising rules that apply where you operate.
+All games run in demo mode with play money. The plugin does not offer real-money gambling. You are responsible for following the laws and advertising rules that apply where you operate, including age restrictions (18+ or 21+ where required). See the [API terms](https://gameserver.exactplay.com/terms).
+
+= Source code =
+
+Development happens on [GitHub](https://github.com/Exactplay-Dev/exactplay-spin-wp-plugin). The plugin has no build step: the JavaScript and CSS in the plugin are the source.
 
 == Installation ==
 
@@ -83,6 +88,10 @@ All games run in demo mode with play money. The plugin does not offer real-money
 = Do I need an API key or account? =
 
 No. The Exactplay Spin catalog and demo launcher are public. Learn more about the API at [exactplay.com/spin](https://exactplay.com/spin).
+
+= Is anything locked or paid? =
+
+No. Every feature works without an account, key or payment. "Demo" refers to the games' free-play mode, not to a trial version of the plugin.
 
 = Which studios and games are available? =
 
@@ -98,7 +107,7 @@ Yes. Embeds are responsive and each studio serves its mobile layout on phones an
 
 = Will embedded games slow down my pages? =
 
-Not by default. In "click to play" mode only the game's artwork loads with the page; the game itself loads when the visitor presses play. Catalog data is cached on your site (12 hours by default).
+Not by default. In "click to play" mode only the game's artwork loads with the page; the game itself loads when the visitor presses play. Artwork is served from your site as WebP, and catalog data is cached on your site (12 hours by default).
 
 = A game I embedded shows "no longer available". =
 
@@ -114,13 +123,13 @@ Catalog data is cached. Click **Clear cache** under **Exactplay Spin → Setting
 
 == External services ==
 
-This plugin relies on the **Exactplay Spin API**, a third-party service operated by Exactplay, to list and launch demo games. Without it the plugin cannot show any games.
+This plugin relies on the **Exactplay Spin API** ([gameserver.exactplay.com](https://gameserver.exactplay.com)), a public, read-only game catalog and demo launcher operated by Exactplay, to list and launch demo games. Without it the plugin cannot show any games.
 
 * **Catalog requests (from your server).** When an editor searches or browses games, and when a page with a game or game grid is displayed and the cached data has expired, your site requests game lists, studio lists and game details from `https://gameserver.exactplay.com`. These requests contain only search terms, studio and game identifiers, and page numbers. No information about your visitors is sent.
 * **Game launches (from the visitor's browser).** When a visitor presses play, or when the page loads if "Load the game immediately" is enabled, the visitor's browser loads the game from `https://gameserver.exactplay.com`, which forwards it to the game studio's servers. The visitor's IP address, browser details, the page address (as the referrer) and the chosen language and currency are sent. The studio may set cookies to run the game.
-* **Game artwork (from the visitor's browser).** Thumbnails and backgrounds are loaded from `https://s3.exactplay.com` when a page with an embed is displayed.
+* **Game artwork.** By default, your server downloads each image from `https://s3.exactplay.com` the first time it is shown, converts it to WebP and stores it in your uploads folder (`wp-content/uploads/exactplay-spin`). Visitors' browsers then load artwork from your site. If you turn off "Store artwork on this site" under **Exactplay Spin → Settings**, visitors' browsers load artwork from `https://s3.exactplay.com` instead. The admin screens always load artwork from `https://s3.exactplay.com`.
 
-Exactplay [Terms of Service](https://exactplay.com/terms-of-service) and [Privacy Policy](https://exactplay.com/privacy-policy).
+Service and API documentation: [gameserver.exactplay.com](https://gameserver.exactplay.com). Exactplay Spin API [Terms of Service](https://gameserver.exactplay.com/terms) and Exactplay [Privacy Policy](https://exactplay.com/privacy-policy).
 
 Links to [Plentyspins](https://plentyspins.com) appear in the admin screens and, only if you enable the credit line, on your site. No data is sent to Plentyspins unless someone clicks one of those links.
 

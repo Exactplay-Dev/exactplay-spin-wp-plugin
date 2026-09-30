@@ -25,6 +25,7 @@ define( 'EXACTPLAY_SPIN_URL', plugin_dir_url( __FILE__ ) );
 require_once EXACTPLAY_SPIN_DIR . 'includes/class-plugin.php';
 require_once EXACTPLAY_SPIN_DIR . 'includes/class-settings.php';
 require_once EXACTPLAY_SPIN_DIR . 'includes/class-api-client.php';
+require_once EXACTPLAY_SPIN_DIR . 'includes/class-image-cache.php';
 require_once EXACTPLAY_SPIN_DIR . 'includes/class-renderer.php';
 require_once EXACTPLAY_SPIN_DIR . 'includes/class-blocks.php';
 require_once EXACTPLAY_SPIN_DIR . 'includes/class-shortcodes.php';

@@ -46,6 +46,13 @@ final class Plugin {
 	public $api;
 
 	/**
+	 * Local copies of game artwork.
+	 *
+	 * @var Image_Cache
+	 */
+	public $images;
+
+	/**
 	 * HTML renderer.
 	 *
 	 * @var Renderer
@@ -70,7 +77,10 @@ final class Plugin {
 	private function __construct() {
 		$this->settings = new Settings();
 		$this->api      = new Api_Client( $this->settings );
-		$this->renderer = new Renderer( $this->settings, $this->api );
+		$this->images   = new Image_Cache( $this->settings );
+		$this->renderer = new Renderer( $this->settings, $this->api, $this->images );
+
+		$this->images->register_hooks();
 
 		( new Blocks( $this->renderer ) )->register_hooks();
 		( new Shortcodes( $this->renderer ) )->register_hooks();

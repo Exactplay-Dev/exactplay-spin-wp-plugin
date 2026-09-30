@@ -154,6 +154,14 @@ class Admin {
 				__( 'Show a small "Powered by Exactplay Spin" line with a link to Plentyspins below games', 'exactplay-spin' ),
 				__( 'Off by default. Nothing links out from your pages unless you turn this on.', 'exactplay-spin' ),
 			),
+			array(
+				'local_images',
+				__( 'Game artwork', 'exactplay-spin' ),
+				'performance',
+				'checkbox',
+				__( 'Store artwork on this site as WebP', 'exactplay-spin' ),
+				__( 'Each image is downloaded once, converted to WebP (usually over 90% smaller) and served from your uploads folder, so visitors\' browsers don\'t contact Exactplay for images. Turn off to load artwork from s3.exactplay.com instead.', 'exactplay-spin' ),
+			),
 			array( 'cache_hours', __( 'Cache catalog data for', 'exactplay-spin' ), 'performance', 'hours', null, __( 'Game lists and artwork URLs are stored on your site so pages load fast. Random picks refresh every 15 minutes.', 'exactplay-spin' ) ),
 		);
 
@@ -363,7 +371,7 @@ class Admin {
 				<div class="notice notice-error inline"><p>
 					<?php
 					/* translators: %s: error message. */
-					echo esc_html( sprintf( __( 'The game catalog could not be loaded: %s', 'exactplay-spin' ), $result->get_error_message() ) );
+					echo esc_html( sprintf( __( 'The game catalog could not be loaded: %s. Try again in a few minutes. If it keeps happening, check that your server can connect to gameserver.exactplay.com.', 'exactplay-spin' ), rtrim( $result->get_error_message(), '.' ) ) );
 					?>
 				</p></div>
 			<?php elseif ( ! $result['games'] ) : ?>
@@ -533,7 +541,10 @@ class Admin {
 		}
 
 		$content  = '<p class="privacy-policy-tutorial">' . esc_html__( 'This sample text describes the demo games embedded with Exactplay Spin. Adjust it to match your settings.', 'exactplay-spin' ) . '</p>';
-		$content .= '<p>' . esc_html__( 'Some pages include free-play demo games provided by Exactplay (gameserver.exactplay.com) and the game studios that made them. Game artwork is loaded from Exactplay\'s image servers (s3.exactplay.com). When you start a game, your browser connects to Exactplay and the game studio, which receive your IP address and browser details and may set cookies to run the game. Demo games use play money only.', 'exactplay-spin' ) . '</p>';
+		$artwork  = $this->settings->get( 'local_images' )
+			? __( 'Game artwork is stored on and served from this website.', 'exactplay-spin' )
+			: __( 'Game artwork is loaded from Exactplay\'s image servers (s3.exactplay.com).', 'exactplay-spin' );
+		$content .= '<p>' . esc_html__( 'Some pages include free-play demo games provided by Exactplay (gameserver.exactplay.com) and the game studios that made them.', 'exactplay-spin' ) . ' ' . esc_html( $artwork ) . ' ' . esc_html__( 'When you start a game, your browser connects to Exactplay and the game studio, which receive your IP address and browser details and may set cookies to run the game. Demo games use play money only.', 'exactplay-spin' ) . '</p>';
 		$content .= '<p>' . sprintf(
 			/* translators: %s: Exactplay privacy policy URL. */
 			esc_html__( 'Exactplay privacy policy: %s', 'exactplay-spin' ),

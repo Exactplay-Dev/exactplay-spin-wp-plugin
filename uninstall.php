@@ -10,6 +10,10 @@ defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 delete_option( 'exactplay_spin_settings' );
 delete_option( 'exactplay_spin_cache_version' );
 
+// Stored WebP copies of game artwork.
+require_once __DIR__ . '/includes/class-image-cache.php';
+Exactplay\Spin\Image_Cache::delete_all();
+
 global $wpdb;
 
 // Cached API responses are transients with hashed names, so they're removed by prefix.

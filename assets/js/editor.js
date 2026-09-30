@@ -183,7 +183,10 @@
 						setResult( ( previous ) =>
 							Object.assign( {}, previous, {
 								loading: false,
-								error: ( error && error.message ) || __( 'The game catalog could not be loaded.', 'exactplay-spin' ),
+								error:
+									( ( error && error.message ) || __( 'The game catalog could not be loaded.', 'exactplay-spin' ) ) +
+									' ' +
+									__( 'Try again in a few minutes.', 'exactplay-spin' ),
 							} )
 						);
 					}
